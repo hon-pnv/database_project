@@ -1,0 +1,272 @@
+--------------------Tạo database--------------------------
+
+Create database Products_Project;
+use Products_Project;
+SET SQL_SAFE_UPDATES = 0;
+
+Create table Chat_Lieu(
+Ma_Chatlieu varchar(10) not null primary key,
+Ten_Chatlieu varchar(10)
+);
+insert into Chat_Lieu values
+("CL001", "Kaki"),
+("CL002", "Cotton"),
+("CL003", "jeans"),
+("CL004", "Kate"),
+("CL005", "Nỉ"),
+("CL006", "Len"),
+("CL007", "Thô"),
+("CL008", "Voan"),
+("CL009", "Lanh");
+
+create table NhaCungCap (
+Ma_NCC Varchar (10) not null primary key,
+Ten_NCC Varchar (30),
+DiaChi Varchar (100),
+DienThoai Varchar (15)
+);
+insert into NhaCungCap values 
+("NCC001","Anh Thơ",     "Q. Hải Châu, Tp. Đà Nẵng",  "095617959"),
+("NCC002","Trung Long",  "Q. Thanh Khê, Tp. Đà Nẵng", "03712266"),
+("NCC003","Baby milk",   "Q. Liên Chiểu, Tp. Đà Nẵng","0968932925"),
+("NCC004","Toàn Thành",  "Q. Hải Châu, Tp. Đà Nẵng",  "02464329"),
+("NCC005","Trường Hạnh", "Q. Hải Châu, Tp. Đà Nẵng",  "03620718"),
+("NCC006","Á Hưng",      "Q. Thanh Khê, Tp. Đà Nẵng", "02218879"),
+("NCC007","Duy Trinh",   "Q. Hải Châu, Tp. Đà Nẵng",  "02247302"),
+("NCC008","Hoàng Khuê",  "Q. Hải Châu, Tp. Đà Nẵng",  "03830122"),
+("NCC009","Đồng Tiến",   "Q. Hải Châu, Tp. Đà Nẵng",  "03621645"),
+("NCC010","Trung Long",  "Q. Thanh Khê, Tp. Đà Nẵng", "03712266"),
+("NCC011","Samurai",     "Q. Hải Châu, Tp. Đà Nẵng",  "03827676"),
+("NCC012","Tấn Hưng",    "Q. Thanh Khê, Tp. Đà Nẵng", "03725022");
+
+Create table San_Pham(
+Ma_SP varchar(10) not null primary key,
+Ma_NCC varchar(10),
+Ten_SP varchar(50),
+Mau_Sac varchar(10),
+Ma_Chatlieu varchar(10),
+So_Luong smallint (6),
+DonGiaNhap float,
+DonGiaBan float,
+Ghi_Chu varchar(200),
+foreign key (Ma_Chatlieu) references Chat_Lieu (Ma_Chatlieu),
+foreign key (Ma_NCC) references NhaCungCap (Ma_NCC)
+);
+insert into San_Pham values
+("SP001", "NCC001","Áo khoác gấu", "Trắng", "CL001", 5, "200000", "300000", " "),
+("SP002", "NCC002","Áo khoác gấu", "Hồng", "CL001", 5, "200000", "300000", " "),
+("SP003", "NCC003","Quần có nơ", "Xám", "CL003", 10, "150000", "200000", " "),
+("SP004", "NCC004","Áo sơ mi", "Trắng", "CL001",  10, "1300000", "400000", " "),
+("SP005", "NCC005","Áo thun", "Trắng", "CL008", 20, "100000", "200000", " "),
+("SP006", "NCC006","Quần jeans", "Xanh", "CL002", 10, "200000", "300000", " "),
+("SP007", "NCC007","Quần đi học", "Đen", "CL001", 20, "120000", "150000", " "),
+("SP008", "NCC008","Mũ tai thỏ", "Đỏ", "CL006", 5, "50000", "60000", " "),
+("SP009", "NCC009","Mũ siêu nhân", "Xanh", "CL007", 5, "40000", "50000", " "),
+("SP011", "NCC001","Khăn", "Vàng", "CL006", 10, "45000", "65000", " "),
+("SP012", "NCC001","Áo khoác picachu", "Vàng", "CL005", 20, "200000", "300000", " "),
+("SP013", "NCC010","Túi", "Vàng", "CL009", 10, "45000", "65000", " "),
+("SP014", "NCC001","Túi", "Trắng", "CL009", 10, "150000", "200000", " ");
+
+Create table Nhan_Vien (
+Ma_NV Varchar (10) not null primary key ,
+Ten_NV Varchar (30),
+UseName Varchar (40),
+Pass Varchar (20)
+);
+insert into Nhan_Vien values 
+("NV001","Trần Thị Huế","hue.tran23","huetran"),
+("NV002","Nguyễn Thị Mỹ Linh","linh.nguyenthimy23","linhmap"),
+("NV003","Nguyễn Thị khánh Linh","linh.nguyenthikhanh23","linhdep"),
+("NV004","Y Hôn","hon.y23","hondieu"),
+("NV005","Nguyễn Thị Vĩnh Uyên","uyen.nguyen23","uyensiuxinh"),
+("NV006","Hồ Thị Đen","den.ho23","denbback"),
+("NV007","Đoàn Thị Mỹ Hạnh","hanh.doan23","hanhne010"),
+("NV008","Nguyễn Thị tuyết Gian","giang.nguyen23","giangnguyen"),
+("NV009","Lê Văn Tiến","tien.le23","tienne010"),
+("NV010","Trần Văn Hiếu","hieu.tran23","hieune010"),
+("NV011","Vũ Y Quỳnh Như","quynhnhu.vu23","quynhnhuxinh");
+
+Create table Khach_Hang(
+Ma_KH varchar(10) not null primary key,
+Ten_KH varchar(50),
+Dienthoai varchar(15),
+DiaChi varchar(50)
+);
+insert into Khach_Hang values
+("KH001","Nguyễn Thị Mỹ Linh",    "098735334", "Quảng Bình"),
+("KH002","Nguyễn Thị Khánh Linh", "038754544", "Quảng Bình"),
+("KH003","Nguyễn Thị Vĩnh Uyên",  "036379634", "Quảng Nam"),
+("KH004","Đoàn Thị Mỹ Hạnh",      "0996477478","Quảng Bình"),
+("KH005","Hồ Thị Đen",            "098468454", "Quảng Trị"),
+("KH006","Trần Thị Huế",          "092983984", "Quảng Trị"),
+("KH007","Nguyễn Thị Tuyết Giang","094546334", "Quảng Nam"),
+("KH008","Nguyễn Duy Tâm",        "095478356", "Đà Nẵng"),
+("KH009","Trần Nhậm",             "039868334", "Hà Nội"),
+("KH010","Đàm Thiên  n",          "0998457476","Quảng Nam"),
+("KH011","Lê Duy Anh",            "0961740596","Quảng Bình"),
+("KH012","Nguyễn Thị Minh Thư",   "095683036", "Quảng Trị");
+
+Create table HoaDonNhap (
+Ma_HDN Varchar (10) not null primary key,
+Ma_SP varchar(10),
+Ngay Date,
+Ma_NCC Varchar (10),
+Ma_NV Varchar (10),
+DienGiai Varchar (100),
+foreign key(Ma_SP) references San_Pham(Ma_SP),
+foreign key (Ma_NCC) references NhaCungCap(Ma_NCC),
+foreign key (Ma_NV) references Nhan_Vien(Ma_NV)
+);
+
+insert into HoaDonNhap values 
+("HDN001","SP001","2021/3/23","NCC009","NV008",""),
+("HDN002","SP002","2021/3/23","NCC008","NV009",""),
+("HDN003","SP003","2021/3/24","NCC007","NV010","");
+insert into HoaDonNhap values
+("HDN004","SP004","2021/3/26","NCC006","NV007",""),
+("HDN005","SP005","2021/3/26","NCC005","NV006",""),
+("HDN006","SP006","2021/3/27","NCC004","NV005",""),
+("HDN007","SP007","2021/3/29","NCC003","NV004",""),
+("HDN008","SP008","2021/4/2","NCC002","NV003",""),
+("HDN009","SP009","2021/5/2","NCC001","NV002","");
+
+
+Create table ChiTietHoaDonNhap (
+Ma_HDN Varchar (10),
+Ma_SP Varchar (10),
+So_Luong smallint (6),
+DonGia float(7,1),
+foreign key (Ma_HDN) references HoaDonNhap (Ma_HDN),
+foreign key (Ma_SP) references San_Pham (Ma_SP)
+);
+insert into ChiTietHoaDonNhap values 
+("HDN001","SP009","12","8000"),
+("HDN002","SP008","13","6000"),
+("HDN003","SP007","10","7000"),
+("HDN004","SP006","9","32000"),
+("HDN005","SP005","10","28000"),
+("HDN006","SP004","7","40000"),
+("HDN007","SP003","6","10000"),
+("HDN008","SP002","5","11000"),
+("HDN009","SP001","8","13000");
+
+
+Create table HoaDonXuat (
+Ma_HDX Varchar (10) not null primary key,
+Ma_KH varchar(10),
+Ngay Date,
+Ma_NV Varchar (10),
+DienGiai Varchar (100),
+foreign key(Ma_KH) references Khach_Hang(Ma_KH),
+foreign key(Ma_NV) references Nhan_Vien(Ma_NV)
+);
+insert into HoaDonXuat values 
+("HDX001", "KH001","2021/5/24","NV005",""),
+("HDX002","KH002","2021/5/26","NV006",""),
+("HDX003","KH003","2021/5/27","NV007",""),
+("HDX004","KH004","2021/6/8","NV008",""),
+("HDX005","KH005","2021/6/8","NV009",""),
+("HDX006","KH006","2021/6/10","NV010",""),
+("HDX007","KH007","2021/6/10","NV001",""),
+("HDX008","KH008","2021/6/11","NV002",""),
+("HDX009","KH009","2021/6/12","NV003",""),
+("HDX010","KH010","2021/7/3","NV004",""),
+("HDX011","KH001","2021/7/3","NV005",""),
+("HDX012","KH001","2021/7/3","NV006","");
+
+Create table ChiTietHoaDonXuat (
+Ma_HDX Varchar (10),
+Ma_SP Varchar (10),
+So_Luong smallint (6),  
+DonGia float(7,1),
+foreign key (Ma_HDX) references HoaDonXuat (Ma_HDX),
+foreign key (Ma_SP) references San_Pham (Ma_SP)
+);
+insert into ChiTietHoaDonXuat values
+("HDX001","SP001",120,15000),
+("HDX002","SP002",7,14000),
+("HDX003","SP001",8,17000),
+("HDX004","SP002",10,23000),
+("HDX005","SP003",10,19000);
+insert into ChiTietHoaDonXuat values
+("HDX006","SP008",5,13000),
+("HDX007","SP012",8,5000),
+("HDX008","SP011",12,5000);
+insert into ChiTietHoaDonXuat values
+("HDX011","SP006",4,11000),
+("HDX012","SP007",5,8000);
+
+-------------------------------- BÀI TẬP ------------------------------
+-- Cho biết mặt hàng có tổng số lượng lớn hơn 10.
+select San_Pham.Ma_SP, San_Pham.Ma_Chatlieu, San_Pham.Ten_SP, San_Pham.Mau_Sac, ChiTietHoaDonXuat.So_Luong as Doanh_Số
+from San_Pham
+join ChiTietHoaDonXuat
+on ChiTietHoaDonXuat.Ma_SP = San_Pham.Ma_SP
+where ChiTietHoaDonXuat.So_Luong > 10;
+
+-- Cho biết mặt hàng có doanh số xuất lớn nhất.
+select San_Pham.Ma_SP, San_Pham.Ten_SP, ChiTietHoaDonXuat.So_Luong as Doanh_Số_Lớn_Nhất
+from San_Pham
+join ChiTietHoaDonXuat
+on ChiTietHoaDonXuat.Ma_SP=San_Pham.Ma_SP
+where ChiTietHoaDonXuat.So_Luong=(select max(So_Luong) from ChiTietHoaDonXuat);
+
+-- In ra danh sách các sản phẩm (Ma_SP, Ten_SP, đơn giá nhập) có đơn giá nhập > 100000.
+select Ma_SP, Ten_SP, DonGiaNhap
+from San_Pham
+where DonGiaNhap > 100000;
+
+-- In ra danh sách (mã sản phẩm, tên sản phẩm, tên chất liệu) có tên chất liệu là "Kaki".
+select Ma_SP, Ten_SP, Ten_Chatlieu
+from San_Pham
+join Chat_Lieu
+on Chat_Lieu.Ma_Chatlieu=San_Pham.Ma_Chatlieu
+where Chat_Lieu.Ten_Chatlieu = "Kaki";
+
+-- In ra danh sách các sản phẩm (MASP,TENSP) có mã sản phẩm bắt đầu là “S” và kết thúc là “01”.
+select Ma_SP, Ten_SP, Ten_Chatlieu
+from San_Pham
+join Chat_Lieu
+on Chat_Lieu.Ma_Chatlieu=San_Pham.Ma_Chatlieu
+where Ma_SP Like "S%01";
+
+-- In ra danh sách các sản phẩm (Mã sản phẩm, tên sản phẩm, tên nhà cung cấp) do nhà cung cấp “Anh Thơ” hoặc “Trung Long” có giá từ 100000 đến 400000.
+select  San_Pham.Ma_SP, San_Pham.DonGiaBan, San_Pham.Ten_SP, NhaCungCap.Ten_NCC
+from San_Pham
+join NhaCungCap
+on NhaCungCap.Ma_NCC=San_Pham.Ma_NCC
+where (NhaCungCap.Ten_NCC = "Anh Thơ" or NhaCungCap.Ten_NCC = "Trung Long" ) and San_Pham.DonGiaBan between 100000 and 400000;
+
+------------------------------- TẠO_VIEW ------------------------   
+-- Tạo_view: Hiện thông tin về hoá đơn nhập: Ngày, diễn giải, tổng tiền trong tháng 5 được sắp xếp theo ngày 
+create view HoaDonNhap_view
+as
+select HoaDonNhap.Ngay,HoaDonNhap.DienGiai,ChiTietHoaDonNhap.So_Luong*ChiTietHoaDonNhap.DonGia as TongTien
+from HoaDonNhap
+join ChiTietHoaDonNhap on ChiTietHoaDonNhap.Ma_SP=HoaDonNhap.Ma_SP
+where month(HoaDonNhap.Ngay) = 5 
+order by HoaDonNhap.Ngay;
+
+-- Tạo_view: Cho biết thông tin sản phẩm chưa được nhập.
+create view San_Pham_view
+as
+select * from San_Pham
+where not exists (
+select HoaDonNhap.Ma_SP from HoaDonNhap where HoaDonNhap.Ma_SP=San_Pham.Ma_SP);
+
+-- Tạo_view: Cho biết thông tin nhân viên chưa nhập hàng bao giờ.
+create view NhanVien_View
+as
+select * from Nhan_vien
+where not exists (
+select HoaDonNhap.Ma_NV from HoaDonNhap where HoaDonNhap.Ma_NV=Nhan_Vien.Ma_NV);
+
+-- Tạo_View cho bảng Chất liệu để hiển thị tên chất liệu, tên sản phẩm và màu sắc
+Create view Chat_Lieu_view
+as
+select Chat_Lieu.Ten_Chatlieu, San_Pham.Ten_SP, San_Pham.Mau_Sac
+from Chat_Lieu
+join San_Pham on  Chat_Lieu.Ma_chatlieu=San_Pham.Ma_chatlieu;
+
+
+
