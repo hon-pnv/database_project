@@ -1,0 +1,12 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `giatri_hang`(`Ma_sp` VARCHAR(10)) RETURNS int(11)
+begin
+     declare tong int default 0;
+     select sum( So_Luong* DonGia ) into tong
+    from ChiTietHoaDonXuat
+    where Ma_SP = Ma_sp
+    group by Ma_SP;
+
+    return tong;
+end$$
+DELIMITER ;
