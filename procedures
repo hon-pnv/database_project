@@ -1,0 +1,32 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_SP`(IN `input` VARCHAR(11))
+BEGIN
+SET FOREIGN_key_checks =0;
+DELETE FROM San_Pham WHERE Ma_SP=input;
+SET FOREIGN_key_checks =1;
+SELECT*FROM San_Pham;
+END$$
+DELIMITER ;
+-------------------------------------------------------
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TongSoLuong_SP`(IN `SP` VARCHAR(10))
+BEGIN
+SELECT San_Pham.Ten_SP, SUM(San_Pham.So_Luong) as TongSP
+FROM san_pham
+WHERE SP = San_pham.Ten_SP
+GROUP BY San_Pham.Ten_SP;
+SELECT * FROM San_Pham;
+END$$
+DELIMITER ;
+-----------------------------------------
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_SP`(IN `Ma_SP` VARCHAR(10), IN `Ma_NCC` VARCHAR(10), IN `Ten_SP` VARCHAR(50), IN `Mau_Sac` VARCHAR(10), IN `Ma_Chatlieu` VARCHAR(10), IN `So_Luong` SMALLINT(6), IN `DonGiaNhap` FLOAT, IN `DonGiaBan` FLOAT, IN `Ghi_Chu` VARCHAR(200))
+BEGIN
+SET FOREIGN_key_checks =0;
+INSERT INTO San_Pham (Ma_SP, Ma_NCC, Ten_SP, Mau_Sac,
+Ma_Chatlieu, So_Luong, DonGiaNhap, DonGiaBan, Ghi_Chu)
+VALUES(Ma_SP, Ma_NCC, Ten_SP, Mau_Sac, Ma_Chatlieu,
+So_Luong, DonGiaNhap, DonGiaBan, Ghi_Chu);
+SET FOREIGN_key_checks =1;
+END$$
+DELIMITER ;
